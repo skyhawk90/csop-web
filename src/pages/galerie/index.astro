@@ -1,0 +1,14 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHead from "../../components/PageHead.astro";
+import AlbumCard from "../../components/AlbumCard.astro";
+import { getGalerie } from "../../lib/data";
+
+const alba = await getGalerie();
+---
+<Base title="Galerie" description="Fotografie z brigád a akcí ZO ČSOP Nasavrky.">
+  <PageHead eyebrow="Fotky" title="Galerie" lead="Fotky z brigád, akcí a vycházek." />
+  <section class="wrap page-body">
+    {alba.length > 0 ? <div class="cards">{alba.map((a) => <AlbumCard entry={a} />)}</div> : <p class="empty">Zatím tu nejsou žádná alba.</p>}
+  </section>
+</Base>

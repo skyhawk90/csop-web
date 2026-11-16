@@ -1,0 +1,30 @@
+---
+import type { GetStaticPaths } from "astro";
+import Base from "../../layouts/Base.astro";
+import PageHead from "../../components/PageHead.astro";
+import NewsCard from "../../components/NewsCard.astro";
+import { getAktuality } from "../../lib/data";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  return paginate(await getAktuality(), { pageSize: 12 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+<Base title={page.currentPage > 1 ? `Aktuality, strana ${page.currentPage}` : "Aktuality"} description="Novinky a ohlédnutí za akcemi ZO ČSOP Nasavrky.">
+  <PageHead eyebrow="Novinky" title="Aktuality" lead="Co se u nás děje a jak dopadly brigády a akce." />
+  <section class="wrap page-body">
+    {page.data.length > 0 ? (
+      <div class="cards">{page.data.map((a) => <NewsCard entry={a} />)}</div>
+    ) : (
+      <p class="empty">Zatím tu nic není.</p>
+    )}
+    {page.lastPage > 1 && (
+      <nav class="pager" aria-label="Stránkování">
+        {page.url.prev ? <a href={page.url.prev}>Novější</a> : <span />}
+        <span>{page.currentPage} / {page.lastPage}</span>
+        {page.url.next ? <a href={page.url.next}>Starší</a> : <span />}
+      </nav>
+    )}
+  </section>
+</Base>

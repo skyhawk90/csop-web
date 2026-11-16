@@ -1,0 +1,25 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHead from "../../components/PageHead.astro";
+import EventItem from "../../components/EventItem.astro";
+import { getAkce } from "../../lib/data";
+
+const { upcoming, past } = await getAkce();
+---
+<Base title="Akce" description="Kalendář akcí ZO ČSOP Nasavrky: brigády, Ptačí neděle, Ukliďme Česko, přednášky a vycházky.">
+  <PageHead eyebrow="Kalendář" title="Akce" lead="Brigády, vycházky a akce pro veřejnost. Přijít může každý, kdo má chuť pomoct nebo se něco dozvědět." />
+  <section class="wrap page-body">
+    <h2 class="h3">Nadcházející</h2>
+    {upcoming.length > 0 ? (
+      <ol class="events">{upcoming.map((e) => <EventItem entry={e} />)}</ol>
+    ) : (
+      <p class="empty">Další termíny právě chystáme. Sledujte naši <a href="https://www.facebook.com/groups/123528801000229" target="_blank" rel="noopener">facebookovou skupinu</a>.</p>
+    )}
+    {past.length > 0 && (
+      <>
+        <h2 class="h3 h3--spaced">Proběhlé akce</h2>
+        <ol class="events events--compact">{past.map((e) => <EventItem entry={e} past />)}</ol>
+      </>
+    )}
+  </section>
+</Base>

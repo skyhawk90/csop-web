@@ -1,0 +1,20 @@
+# Staré URL z WordPressu → nový web
+/nadchazejici-udalosti/  /akce/        301
+/event-detail/           /akce/        301
+/uklidme-cesko-2/*       /akce/        301
+/uklidmecesko/           /akce/        301
+/blogs/                  /aktuality/   301
+/kontakt/                /#kontakt     301
+/o-nas/                  /#o-nas       301
+/about-us-2/             /#o-nas       301
+/nas-tym/                /#tym         301
+/prurez-cinnosti/        /#cinnost     301
+/obnovalesu/             /#cinnost     301
+/koseniauklidbiomasy/    /#cinnost     301
+/ptacinedele/            /#cinnost     301
+/ptaci-nedele/           /#cinnost     301
+/naucnestezky/           /#cinnost     301
+/zlaty-list/             /#cinnost     301
+/edukace/                /#cinnost     301
+/vzdelavani/             /#cinnost     301
+/home/                   /             301

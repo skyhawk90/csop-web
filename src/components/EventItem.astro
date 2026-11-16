@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Icon from "./Icon.astro";
+import { dayNum, monthShort, formatRange, weekday, isoDate } from "../lib/data";
+
+interface Props { entry: CollectionEntry<"akce">; past?: boolean }
+const { entry, past = false } = Astro.props;
+const { title, datum, datum_do, cas, misto, perex } = entry.data;
+---
+<li class:list={["event", "reveal", { "event--past": past }]}>
+  <time class="event__date" datetime={isoDate(datum)}>
+    <span class="event__day">{dayNum(datum)}</span>
+    <span class="event__month">{monthShort(datum)}</span>
+  </time>
+  <div class="event__body">
+    <h3><a href={`/akce/${entry.id}/`}>{title}</a></h3>
+    <p class="event__meta">
+      <span><Icon name="calendar-blank" />{!datum_do && <span class="event__wd">{weekday(datum)}, </span>}{formatRange(datum, datum_do)}</span>
+      {cas && <span><Icon name="clock" />{cas}</span>}
+      {misto && <span><Icon name="map-pin" />{misto}</span>}
+    </p>
+    {!past && <p class="event__perex">{perex}</p>}
+  </div>
+</li>

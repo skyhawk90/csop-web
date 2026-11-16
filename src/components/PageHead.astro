@@ -1,0 +1,12 @@
+---
+interface Props { title: string; eyebrow?: string; lead?: string; back?: { href: string; label: string } }
+const { title, eyebrow, lead, back } = Astro.props;
+import Icon from "./Icon.astro";
+---
+<header class="page-head wrap">
+  {back && <a class="back" href={back.href}><Icon name="arrow-left" />{back.label}</a>}
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <h1 class="page-head__title">{title}</h1>
+  {lead && <p class="lead">{lead}</p>}
+  <slot />
+</header>

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ČSOP Nasavrky</title>
+  <meta name="description" content="Základní organizace Českého svazu ochránců přírody Nasavrky. Kosíme chráněné louky, obnovujeme lesy, stavíme naučné stezky a učíme děti poznávat přírodu Železných hor.">
+  <meta property="og:title" content="ČSOP Nasavrky">
+  <meta property="og:description" content="Pečujeme o přírodu Železných hor už od roku 1990.">
+  <meta property="og:image" content="assets/img/hero-koseni.jpg">
+  <meta name="theme-color" content="#1c3326">
+  <link rel="icon" href="assets/img/logo-ruka.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- TODO pro produkci: fonty stáhnout a hostovat lokálně (@font-face), kvůli GDPR a rychlosti -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,750&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/img/hero-koseni.jpg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+  <a class="skip" href="#obsah">Přeskočit na obsah</a>
+
+  <header class="nav" id="top">
+    <div class="wrap nav__inner">
+      <a class="brand" href="#top" aria-label="ČSOP Nasavrky, úvod">
+        <span class="brand__mark"><img src="assets/img/logo-ruka.png" alt="" width="190" height="70"></span>
+        <span class="brand__text"><strong>ČSOP Nasavrky</strong><small>ochránci přírody</small></span>
+      </a>
+      <nav class="nav__links" id="menu" aria-label="Hlavní navigace">
+        <a href="#cinnost">Činnost</a>
+        <a href="#rok">Akce</a>
+        <a href="#o-nas">O nás</a>
+        <a href="#tym">Tým</a>
+        <a href="#kontakt">Kontakt</a>
+        <a class="btn btn--primary btn--sm" href="#kontakt">Přidat se</a>
+      </nav>
+      <button class="nav__toggle" type="button" aria-controls="menu" aria-expanded="false" aria-label="Otevřít menu">
+        <svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-list"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="obsah">
+
+    <!-- HERO -->
+    <section class="hero wrap">
+      <div class="hero__copy">
+        <h1 class="hero__title">Pečujeme o&nbsp;přírodu Železných&nbsp;hor</h1>
+        <p class="hero__lead">Kosíme chráněné louky, sázíme stromy a učíme děti poznávat přírodu. V Nasavrkách a okolí už od roku 1990.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#kontakt">Přidat se
+            <svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-right"/></svg></a>
+          <a class="btn btn--ghost" href="#cinnost">Co děláme</a>
+        </div>
+      </div>
+      <div class="hero__media">
+        <img class="hero__img hero__img--main" src="assets/img/hero-koseni.jpg" width="1024" height="768"
+             alt="Dobrovolníci s hráběmi a náručí posečené trávy na louce u lesa">
+        <img class="hero__img hero__img--inset" src="assets/img/kvetiny.jpg" width="1800" height="960" loading="lazy"
+             alt="Orsej a prvosenky připravené k poznávání rostlin na soutěži Zlatý list">
+      </div>
+    </section>
+
+    <!-- FAKTA -->
+    <section class="facts wrap" aria-label="Naše organizace v číslech">
+      <dl class="facts__grid">
+        <div class="fact reveal"><dt>rok založení</dt><dd>1990</dd></div>
+        <div class="fact reveal"><dt>členů ve věku 1 až 74 let</dt><dd>45</dd></div>
+        <div class="fact reveal"><dt>ptačích budek v lesích</dt><dd>250</dd></div>
+        <div class="fact reveal"><dt>oplocenek pro mladé stromky</dt><dd>1 km+</dd></div>
+      </dl>
+    </section>
+
+    <!-- ČINNOST -->
+    <section class="section" id="cinnost">
+      <div class="wrap">
+        <p class="eyebrow">Naše činnost</p>
+        <h2 class="h2 reveal">Práce v terénu i&nbsp;s&nbsp;lidmi</h2>
+
+        <div class="bento">
+          <a class="tile tile--forest reveal" href="/obnovalesu/">
+            <img src="assets/img/obnova-lesu.jpg" alt="Kontrola výsadby mladých smrků a borovic na lesní pasece" loading="lazy" width="1024" height="576">
+            <div class="tile__body">
+              <h3>Obnova lesů</h3>
+              <p>S Lesy ČR sázíme stromky, stahujeme klest a stavíme oplocenky proti okusu.</p>
+            </div>
+          </a>
+          <a class="tile tile--mow reveal" href="/koseniauklidbiomasy/">
+            <img src="assets/img/koseni.jpg" alt="Křovinořezy na posečené podzimní stráni" loading="lazy" width="1024" height="768">
+            <div class="tile__body">
+              <h3>Kosení luk</h3>
+              <p>Udržujeme chráněná území pro vzácné rostliny a živočichy.</p>
+            </div>
+          </a>
+          <a class="tile tile--birds reveal" href="/ptacinedele/">
+            <img src="assets/img/ptaci-nedele.jpg" alt="Ornitolog ukazuje dětem sýkoru koňadru při kroužkování" loading="lazy" width="1024" height="683">
+            <div class="tile__body">
+              <h3>Ptačí neděle</h3>
+              <p>Kroužkování ptáků u rybníka Hluboký, každé jaro od roku 2009.</p>
+            </div>
+          </a>
+          <a class="tile tile--trail reveal" href="/naucnestezky/">
+            <img src="assets/img/naucne-stezky.jpg" alt="Dřevěná informační tabule v přírodní rezervaci Vápenice" loading="lazy" width="1024" height="768">
+            <div class="tile__body">
+              <h3>Naučné stezky</h3>
+              <p>Tabule pro CHKO i geopark Železné hory.</p>
+            </div>
+          </a>
+          <a class="tile tile--solid reveal" href="/zlaty-list/">
+            <svg class="ico ico--lg" aria-hidden="true"><use href="assets/img/icons.svg#i-medal"/></svg>
+            <div class="tile__body">
+              <h3>Zlatý list</h3>
+              <p>Místní kolo přírodovědné soutěže pořádáme od roku 1997 u potoka Debrný.</p>
+            </div>
+          </a>
+          <a class="tile tile--edu reveal" href="/edukace/">
+            <img src="assets/img/edukace.jpg" alt="Skupina dětí a dospělých při večerní vycházce za výry" loading="lazy" width="1024" height="683">
+            <div class="tile__body">
+              <h3>Přednášky a vycházky</h3>
+              <p>Zimní cyklus přednášek od roku 1998 a komentované vycházky pro veřejnost.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROK S NÁMI -->
+    <section class="section section--tint" id="rok">
+      <div class="wrap">
+        <h2 class="h2 reveal">Náš rok v&nbsp;přírodě</h2>
+        <p class="lead reveal">Akce se opakují každý rok. Přesné termíny zveřejňujeme ve facebookové skupině.</p>
+
+        <!-- TODO: zařazení akcí do ročních období ověřit s výborem ZO -->
+        <ol class="seasons">
+          <li class="season reveal">
+            <svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-flower-tulip"/></svg>
+            <h3>Jaro</h3>
+            <ul>
+              <li>Ukliďme Česko v okolí Nasavrk</li>
+              <li>Ptačí neděle ke Dni Země</li>
+              <li>Místní kolo Zlatého listu</li>
+              <li>Výsadba stromků</li>
+            </ul>
+          </li>
+          <li class="season reveal">
+            <svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-sun"/></svg>
+            <h3>Léto</h3>
+            <ul>
+              <li>Kosení chráněných luk</li>
+              <li>Údržba naučných stezek</li>
+              <li>Výlet pro členy</li>
+            </ul>
+          </li>
+          <li class="season reveal">
+            <svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-leaf"/></svg>
+            <h3>Podzim</h3>
+            <ul>
+              <li>Úklid biomasy v PR Hluboký</li>
+              <li>Stahování klestu</li>
+              <li>Komentované vycházky</li>
+            </ul>
+          </li>
+          <li class="season reveal">
+            <svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-snowflake"/></svg>
+            <h3>Zima</h3>
+            <ul>
+              <li>Cyklus přednášek pro veřejnost</li>
+              <li>Čištění ptačích budek</li>
+            </ul>
+          </li>
+        </ol>
+
+        <a class="link-arrow" href="https://www.facebook.com/groups/123528801000229" target="_blank" rel="noopener">
+          <svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-facebook-logo"/></svg>
+          Termíny akcí na Facebooku
+          <svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-up-right"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- O NÁS -->
+    <section class="section" id="o-nas">
+      <div class="wrap about">
+        <figure class="about__media reveal">
+          <img src="assets/img/o-nas.jpg" alt="Malé dítě v modré bundě a žlutých holínkách pomáhá tahat větev na brigádě" loading="lazy" width="574" height="1024">
+        </figure>
+        <div class="about__copy">
+          <h2 class="h2 reveal">Od roku 1990 v&nbsp;Nasavrkách</h2>
+          <p class="reveal">Začínalo nás patnáct. Dnes má základní organizace kolem 45 členů, nejčastěji celé rodiny. Nejmladšímu je rok, nejstaršímu 74 let.</p>
+          <p class="reveal">Z okolí Nasavrk jsme se postupně rozrostli do celého regionu Železných hor. Pracujeme hlavně na maloplošných chráněných územích, kde by bez pravidelné péče louky zarostly náletem.</p>
+          <p class="about__statement reveal">Chceme mít prostředí, ve kterém žijeme, hezké, čisté a v&nbsp;co nejlepším stavu.</p>
+          <div class="partners reveal">
+            <h3>Spolupracujeme s</h3>
+            <ul>
+              <li>AOPK ČR, Správa CHKO Železné hory</li>
+              <li>Lesy ČR, LS Nasavrky</li>
+              <li>Město Nasavrky</li>
+              <li>Pardubický kraj</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TÝM -->
+    <section class="section section--tint" id="tym">
+      <div class="wrap">
+        <h2 class="h2 reveal">Výbor organizace</h2>
+        <ul class="team">
+          <li class="person reveal"><img src="assets/img/tym-morch.jpg" alt="" loading="lazy" width="768" height="869"><h3>Milan Morch</h3><p>předseda</p></li>
+          <li class="person reveal"><img src="assets/img/tym-kohoutek.jpg" alt="" loading="lazy" width="768" height="864"><h3>Aleš Kohoutek</h3><p>jednatel</p></li>
+          <li class="person reveal"><img src="assets/img/tym-hampl.jpg" alt="" loading="lazy" width="768" height="899"><h3>Martin Hampl</h3><p>předseda revizní komise</p></li>
+          <li class="person reveal"><img src="assets/img/tym-smrcek.jpg" alt="" loading="lazy" width="768" height="907"><h3>Robin Smrček</h3><p>člen výboru</p></li>
+          <li class="person reveal"><img src="assets/img/tym-bocek.jpg" alt="" loading="lazy" width="768" height="838"><h3>Karel Boček</h3><p>člen výboru</p></li>
+          <li class="person reveal"><img src="assets/img/tym-dvorakova.jpg" alt="" loading="lazy" width="400" height="450"><h3>Lenka Dvořáková</h3><p>hospodářka</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PŘIDEJ SE / KONTAKT -->
+    <section class="section" id="kontakt">
+      <div class="wrap">
+        <div class="join reveal">
+          <div class="join__copy">
+            <h2 class="h2">Přidej se k&nbsp;nám</h2>
+            <p>Nemusíš být odborník. Stačí chuť přiložit ruku k dílu na brigádě nebo přijít na akci s dětmi.</p>
+            <ul class="join__list">
+              <li><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-hand-heart"/></svg>Zapojíš se do ochrany svého okolí</li>
+              <li><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-binoculars"/></svg>Poznáš přírodu kolem sebe do hloubky</li>
+              <li><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-users-three"/></svg>Potkáš skvělé lidi všech generací</li>
+            </ul>
+          </div>
+          <address class="contact">
+            <p class="contact__name">Milan Morch<span>předseda ZO</span></p>
+            <a class="contact__row" href="mailto:csopnasavrky@seznam.cz">
+              <svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-envelope-simple"/></svg>csopnasavrky@seznam.cz</a>
+            <a class="contact__row" href="tel:+420724527246">
+              <svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-phone"/></svg>+420 724 527 246</a>
+            <a class="contact__row" href="https://mapy.cz/zakladni?q=Lib%C3%A1%C5%88%209%2C%20Nasavrky" target="_blank" rel="noopener">
+              <svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-map-pin"/></svg>Libáň 9, 538 25 Nasavrky</a>
+            <a class="btn btn--light" href="mailto:csopnasavrky@seznam.cz?subject=Chci%20se%20p%C5%99idat">Napsat e-mail</a>
+          </address>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <p class="footer__org">Základní organizace Českého svazu ochránců přírody Nasavrky</p>
+      <nav class="footer__links" aria-label="Odkazy v patičce">
+        <a href="https://www.csop.cz" target="_blank" rel="noopener">ČSOP celostátně</a>
+        <a href="https://www.facebook.com/groups/123528801000229" target="_blank" rel="noopener">Facebook</a>
+        <a href="/pro-cleny/">Pro členy</a>
+      </nav>
+      <p class="footer__copy">© 2026 ZO ČSOP Nasavrky</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

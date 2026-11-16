@@ -1,0 +1,92 @@
+---
+import "@fontsource-variable/bricolage-grotesque/opsz.css";
+import "@fontsource-variable/figtree/index.css";
+import "@fontsource-variable/figtree/wght-italic.css";
+import "../styles.css";
+import Icon from "../components/Icon.astro";
+import ogDefault from "../assets/img/hero-koseni.jpg";
+import { getImage } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: ImageMetadata;
+}
+
+const {
+  title,
+  description = "Základní organizace Českého svazu ochránců přírody Nasavrky. Kosíme chráněné louky, obnovujeme lesy, stavíme naučné stezky a učíme děti poznávat přírodu Železných hor.",
+  image = ogDefault,
+} = Astro.props;
+
+const fullTitle = title ? `${title} | ČSOP Nasavrky` : "ČSOP Nasavrky";
+const og = await getImage({ src: image, width: 1200, format: "jpg" });
+const ogUrl = new URL(og.src, Astro.site);
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const path = Astro.url.pathname;
+const active = (href: string) => (path.startsWith(href) ? "page" : undefined);
+---
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{fullTitle}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonical}>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="cs_CZ">
+  <meta property="og:title" content={fullTitle}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={ogUrl}>
+  <meta property="og:url" content={canonical}>
+  <meta name="theme-color" content="#1c3326">
+  <link rel="icon" href="/logo-ruka.png">
+  <link rel="sitemap" href="/sitemap-index.xml">
+  <slot name="head" />
+  <script is:inline>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+  <a class="skip" href="#obsah">Přeskočit na obsah</a>
+
+  <header class="nav" id="top">
+    <div class="wrap nav__inner">
+      <a class="brand" href="/" aria-label="ČSOP Nasavrky, úvod">
+        <span class="brand__mark"><img src="/logo-ruka.png" alt="" width="190" height="70"></span>
+        <span class="brand__text"><strong>ČSOP Nasavrky</strong><small>ochránci přírody</small></span>
+      </a>
+      <nav class="nav__links" id="menu" aria-label="Hlavní navigace">
+        <a href="/akce/" aria-current={active("/akce")}>Akce</a>
+        <a href="/aktuality/" aria-current={active("/aktuality")}>Aktuality</a>
+        <a href="/galerie/" aria-current={active("/galerie")}>Galerie</a>
+        <a href="/#cinnost">Činnost</a>
+        <a href="/#o-nas">O nás</a>
+        <a href="/#kontakt">Kontakt</a>
+        <a class="btn btn--primary btn--sm" href="/#kontakt">Přidat se</a>
+      </nav>
+      <button class="nav__toggle" type="button" aria-controls="menu" aria-expanded="false" aria-label="Otevřít menu">
+        <Icon name="list" />
+      </button>
+    </div>
+  </header>
+
+  <main id="obsah">
+    <slot />
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <p class="footer__org">Základní organizace Českého svazu ochránců přírody Nasavrky</p>
+      <nav class="footer__links" aria-label="Odkazy v patičce">
+        <a href="https://www.csop.cz" target="_blank" rel="noopener">ČSOP celostátně</a>
+        <a href="https://www.facebook.com/groups/123528801000229" target="_blank" rel="noopener">Facebook</a>
+        <a href="/pro-cleny/">Pro členy</a>
+      </nav>
+      <p class="footer__copy">© {new Date().getFullYear()} ZO ČSOP Nasavrky</p>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

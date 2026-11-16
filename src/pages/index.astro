@@ -1,0 +1,257 @@
+---
+import Base from "../layouts/Base.astro";
+import Icon from "../components/Icon.astro";
+import EventItem from "../components/EventItem.astro";
+import NewsCard from "../components/NewsCard.astro";
+import { Image } from "astro:assets";
+import { getAkce, getAktuality } from "../lib/data";
+import edukace from "../assets/img/edukace.jpg";
+import hero_koseni from "../assets/img/hero-koseni.jpg";
+import koseni from "../assets/img/koseni.jpg";
+import kvetiny from "../assets/img/kvetiny.jpg";
+import naucne_stezky from "../assets/img/naucne-stezky.jpg";
+import o_nas from "../assets/img/o-nas.jpg";
+import obnova_lesu from "../assets/img/obnova-lesu.jpg";
+import ptaci_nedele from "../assets/img/ptaci-nedele.jpg";
+import tym_bocek from "../assets/img/tym-bocek.jpg";
+import tym_dvorakova from "../assets/img/tym-dvorakova.jpg";
+import tym_hampl from "../assets/img/tym-hampl.jpg";
+import tym_kohoutek from "../assets/img/tym-kohoutek.jpg";
+import tym_morch from "../assets/img/tym-morch.jpg";
+import tym_smrcek from "../assets/img/tym-smrcek.jpg";
+
+const img = { edukace, hero_koseni, koseni, kvetiny, naucne_stezky, o_nas, obnova_lesu, ptaci_nedele, tym_bocek, tym_dvorakova, tym_hampl, tym_kohoutek, tym_morch, tym_smrcek };
+const { upcoming } = await getAkce();
+const aktuality = await getAktuality();
+---
+<Base>
+    {/* HERO */}
+    <section class="hero wrap">
+      <div class="hero__copy">
+        <h1 class="hero__title">Pečujeme o&nbsp;přírodu Železných&nbsp;hor</h1>
+        <p class="hero__lead">Kosíme chráněné louky, sázíme stromy a učíme děti poznávat přírodu. V Nasavrkách a okolí už od roku 1990.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#kontakt">Přidat se
+            <Icon name="arrow-right" /></a>
+          <a class="btn btn--ghost" href="#cinnost">Co děláme</a>
+        </div>
+      </div>
+      <div class="hero__media">
+        <Image class="hero__img hero__img--main" src={img.hero_koseni} loading="eager" fetchpriority="high" widths={[640, 1024]} sizes="(max-width: 860px) 100vw, 46vw"
+             alt="Dobrovolníci s hráběmi a náručí posečené trávy na louce u lesa" />
+        <Image class="hero__img hero__img--inset" src={img.kvetiny} loading="lazy" widths={[400, 800]} sizes="(max-width: 860px) 38vw, 20vw"
+             alt="Orsej a prvosenky připravené k poznávání rostlin na soutěži Zlatý list" />
+      </div>
+    </section>
+
+    {/* FAKTA */}
+    <section class="facts wrap" aria-label="Naše organizace v číslech">
+      <dl class="facts__grid">
+        <div class="fact reveal"><dt>rok založení</dt><dd>1990</dd></div>
+        <div class="fact reveal"><dt>členů ve věku 1 až 74 let</dt><dd>45</dd></div>
+        <div class="fact reveal"><dt>ptačích budek v lesích</dt><dd>250</dd></div>
+        <div class="fact reveal"><dt>oplocenek pro mladé stromky</dt><dd>1 km+</dd></div>
+      </dl>
+    </section>
+
+
+    {/* CO SE CHYSTÁ */}
+    <section class="section section--news" id="novinky">
+      <div class="wrap news">
+        <div class="news__events">
+          <div class="section-head">
+            <h2 class="h2 reveal">Nejbližší akce</h2>
+            <a class="more" href="/akce/">Všechny akce <Icon name="arrow-right" /></a>
+          </div>
+          {upcoming.length > 0 ? (
+            <ol class="events">{upcoming.slice(0, 3).map((e) => <EventItem entry={e} />)}</ol>
+          ) : (
+            <p class="empty reveal">Termíny dalších akcí právě chystáme. Sledujte naši <a href="https://www.facebook.com/groups/123528801000229" target="_blank" rel="noopener">facebookovou skupinu</a>.</p>
+          )}
+        </div>
+        {aktuality.length > 0 && (
+          <div class="news__posts">
+            <div class="section-head">
+              <h2 class="h2 reveal">Aktuality</h2>
+              <a class="more" href="/aktuality/">Všechny aktuality <Icon name="arrow-right" /></a>
+            </div>
+            <div class="cards cards--stack">{aktuality.slice(0, 2).map((a) => <NewsCard entry={a} />)}</div>
+          </div>
+        )}
+      </div>
+    </section>
+
+    {/* ČINNOST */}
+    <section class="section" id="cinnost">
+      <div class="wrap">
+        <p class="eyebrow">Naše činnost</p>
+        <h2 class="h2 reveal">Práce v terénu i&nbsp;s&nbsp;lidmi</h2>
+
+        <div class="bento">
+          <article class="tile tile--forest reveal">
+            <Image src={img.obnova_lesu} alt="Kontrola výsadby mladých smrků a borovic na lesní pasece" loading="lazy" />
+            <div class="tile__body">
+              <h3>Obnova lesů</h3>
+              <p>S Lesy ČR sázíme stromky, stahujeme klest a stavíme oplocenky proti okusu.</p>
+            </div>
+          </article>
+          <article class="tile tile--mow reveal">
+            <Image src={img.koseni} alt="Křovinořezy na posečené podzimní stráni" loading="lazy" />
+            <div class="tile__body">
+              <h3>Kosení luk</h3>
+              <p>Udržujeme chráněná území pro vzácné rostliny a živočichy.</p>
+            </div>
+          </article>
+          <article class="tile tile--birds reveal">
+            <Image src={img.ptaci_nedele} alt="Ornitolog ukazuje dětem sýkoru koňadru při kroužkování" loading="lazy" />
+            <div class="tile__body">
+              <h3>Ptačí neděle</h3>
+              <p>Kroužkování ptáků u rybníka Hluboký, každé jaro od roku 2009.</p>
+            </div>
+          </article>
+          <article class="tile tile--trail reveal">
+            <Image src={img.naucne_stezky} alt="Dřevěná informační tabule v přírodní rezervaci Vápenice" loading="lazy" />
+            <div class="tile__body">
+              <h3>Naučné stezky</h3>
+              <p>Tabule pro CHKO i geopark Železné hory.</p>
+            </div>
+          </article>
+          <article class="tile tile--solid reveal">
+            <Icon name="medal" class="ico--lg" />
+            <div class="tile__body">
+              <h3>Zlatý list</h3>
+              <p>Místní kolo přírodovědné soutěže pořádáme od roku 1997 u potoka Debrný.</p>
+            </div>
+          </article>
+          <article class="tile tile--edu reveal">
+            <Image src={img.edukace} alt="Skupina dětí a dospělých při večerní vycházce za výry" loading="lazy" />
+            <div class="tile__body">
+              <h3>Přednášky a vycházky</h3>
+              <p>Zimní cyklus přednášek od roku 1998 a komentované vycházky pro veřejnost.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    {/* ROK S NÁMI */}
+    <section class="section section--tint" id="rok">
+      <div class="wrap">
+        <h2 class="h2 reveal">Náš rok v&nbsp;přírodě</h2>
+        <p class="lead reveal">Akce se opakují každý rok. Přesné termíny najdete v&nbsp;<a href="/akce/">kalendáři akcí</a> a ve facebookové skupině.</p>
+
+        {/* TODO: zařazení akcí do ročních období ověřit s výborem ZO */}
+        <ol class="seasons">
+          <li class="season reveal">
+            <Icon name="flower-tulip" />
+            <h3>Jaro</h3>
+            <ul>
+              <li>Ukliďme Česko v okolí Nasavrk</li>
+              <li>Ptačí neděle ke Dni Země</li>
+              <li>Místní kolo Zlatého listu</li>
+              <li>Výsadba stromků</li>
+            </ul>
+          </li>
+          <li class="season reveal">
+            <Icon name="sun" />
+            <h3>Léto</h3>
+            <ul>
+              <li>Kosení chráněných luk</li>
+              <li>Údržba naučných stezek</li>
+              <li>Výlet pro členy</li>
+            </ul>
+          </li>
+          <li class="season reveal">
+            <Icon name="leaf" />
+            <h3>Podzim</h3>
+            <ul>
+              <li>Úklid biomasy v PR Hluboký</li>
+              <li>Stahování klestu</li>
+              <li>Komentované vycházky</li>
+            </ul>
+          </li>
+          <li class="season reveal">
+            <Icon name="snowflake" />
+            <h3>Zima</h3>
+            <ul>
+              <li>Cyklus přednášek pro veřejnost</li>
+              <li>Čištění ptačích budek</li>
+            </ul>
+          </li>
+        </ol>
+
+        <a class="link-arrow" href="https://www.facebook.com/groups/123528801000229" target="_blank" rel="noopener">
+          <Icon name="facebook-logo" />
+          Termíny akcí na Facebooku
+          <Icon name="arrow-up-right" />
+        </a>
+      </div>
+    </section>
+
+    {/* O NÁS */}
+    <section class="section" id="o-nas">
+      <div class="wrap about">
+        <figure class="about__media reveal">
+          <Image src={img.o_nas} alt="Malé dítě v modré bundě a žlutých holínkách pomáhá tahat větev na brigádě" loading="lazy" />
+        </figure>
+        <div class="about__copy">
+          <h2 class="h2 reveal">Od roku 1990 v&nbsp;Nasavrkách</h2>
+          <p class="reveal">Začínalo nás patnáct. Dnes má základní organizace kolem 45 členů, nejčastěji celé rodiny. Nejmladšímu je rok, nejstaršímu 74 let.</p>
+          <p class="reveal">Z okolí Nasavrk jsme se postupně rozrostli do celého regionu Železných hor. Pracujeme hlavně na maloplošných chráněných územích, kde by bez pravidelné péče louky zarostly náletem.</p>
+          <p class="about__statement reveal">Chceme mít prostředí, ve kterém žijeme, hezké, čisté a v&nbsp;co nejlepším stavu.</p>
+          <div class="partners reveal">
+            <h3>Spolupracujeme s</h3>
+            <ul>
+              <li>AOPK ČR, Správa CHKO Železné hory</li>
+              <li>Lesy ČR, LS Nasavrky</li>
+              <li>Město Nasavrky</li>
+              <li>Pardubický kraj</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* TÝM */}
+    <section class="section section--tint" id="tym">
+      <div class="wrap">
+        <h2 class="h2 reveal">Výbor organizace</h2>
+        <ul class="team">
+          <li class="person reveal"><Image src={img.tym_morch} alt="" loading="lazy" /><h3>Milan Morch</h3><p>předseda</p></li>
+          <li class="person reveal"><Image src={img.tym_kohoutek} alt="" loading="lazy" /><h3>Aleš Kohoutek</h3><p>jednatel</p></li>
+          <li class="person reveal"><Image src={img.tym_hampl} alt="" loading="lazy" /><h3>Martin Hampl</h3><p>předseda revizní komise</p></li>
+          <li class="person reveal"><Image src={img.tym_smrcek} alt="" loading="lazy" /><h3>Robin Smrček</h3><p>člen výboru</p></li>
+          <li class="person reveal"><Image src={img.tym_bocek} alt="" loading="lazy" /><h3>Karel Boček</h3><p>člen výboru</p></li>
+          <li class="person reveal"><Image src={img.tym_dvorakova} alt="" loading="lazy" /><h3>Lenka Dvořáková</h3><p>hospodářka</p></li>
+        </ul>
+      </div>
+    </section>
+
+    {/* PŘIDEJ SE / KONTAKT */}
+    <section class="section" id="kontakt">
+      <div class="wrap">
+        <div class="join reveal">
+          <div class="join__copy">
+            <h2 class="h2">Přidej se k&nbsp;nám</h2>
+            <p>Nemusíš být odborník. Stačí chuť přiložit ruku k dílu na brigádě nebo přijít na akci s dětmi.</p>
+            <ul class="join__list">
+              <li><Icon name="hand-heart" />Zapojíš se do ochrany svého okolí</li>
+              <li><Icon name="binoculars" />Poznáš přírodu kolem sebe do hloubky</li>
+              <li><Icon name="users-three" />Potkáš skvělé lidi všech generací</li>
+            </ul>
+          </div>
+          <address class="contact">
+            <p class="contact__name">Milan Morch<span>předseda ZO</span></p>
+            <a class="contact__row" href="mailto:csopnasavrky@seznam.cz">
+              <Icon name="envelope-simple" />csopnasavrky@seznam.cz</a>
+            <a class="contact__row" href="tel:+420724527246">
+              <Icon name="phone" />+420 724 527 246</a>
+            <a class="contact__row" href="https://mapy.cz/zakladni?q=Lib%C3%A1%C5%88%209%2C%20Nasavrky" target="_blank" rel="noopener">
+              <Icon name="map-pin" />Libáň 9, 538 25 Nasavrky</a>
+            <a class="btn btn--light" href="mailto:csopnasavrky@seznam.cz?subject=Chci%20se%20p%C5%99idat">Napsat e-mail</a>
+          </address>
+        </div>
+      </div>
+    </section>
+  
+</Base>

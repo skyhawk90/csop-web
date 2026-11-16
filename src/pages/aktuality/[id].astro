@@ -1,0 +1,41 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import PageHead from "../../components/PageHead.astro";
+import PhotoGrid from "../../components/PhotoGrid.astro";
+import Icon from "../../components/Icon.astro";
+import { formatDate, isoDate } from "../../lib/data";
+
+export async function getStaticPaths() {
+  const all = await getCollection("aktuality", (e) => import.meta.env.DEV || !e.data.koncept);
+  return all.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { title, datum, perex, obrazek, obrazek_popis, galerie } = entry.data;
+const { Content } = await render(entry);
+const album = galerie ? await getEntry(galerie) : undefined;
+---
+<Base title={title} description={perex} image={obrazek}>
+  <PageHead title={title} back={{ href: "/aktuality/", label: "Všechny aktuality" }}>
+    <p class="page-head__date"><time datetime={isoDate(datum)}>{formatDate(datum)}</time></p>
+  </PageHead>
+  <article class="wrap page-body article">
+    {obrazek && (
+      <figure class="article__figure">
+        <Image class="article__img" src={obrazek} alt={obrazek_popis ?? ""} widths={[640, 1200]} sizes="(max-width: 860px) 100vw, 760px" />
+        {obrazek_popis && <figcaption>{obrazek_popis}</figcaption>}
+      </figure>
+    )}
+    <p class="article__perex">{perex}</p>
+    <div class="prose"><Content /></div>
+    {album && (
+      <section class="article__gallery">
+        <h2 class="h3">Fotky z akce</h2>
+        <PhotoGrid fotky={album.data.fotky} title={album.data.title} limit={12} />
+        <a class="link-arrow" href={`/galerie/${album.id}/`}><Icon name="images" />Celé album ({album.data.fotky.length}) <Icon name="arrow-right" /></a>
+      </section>
+    )}
+  </article>
+</Base>

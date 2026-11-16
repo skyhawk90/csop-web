@@ -1,0 +1,18 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHead from "../../components/PageHead.astro";
+import PhotoGrid from "../../components/PhotoGrid.astro";
+import { formatDate, getGalerie } from "../../lib/data";
+
+export async function getStaticPaths() {
+  return (await getGalerie()).map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const { title, datum, popis, fotky } = entry.data;
+---
+<Base title={title} description={popis ?? `Fotky: ${title}`} image={fotky[0]}>
+  <PageHead eyebrow={formatDate(datum)} title={title} lead={popis} back={{ href: "/galerie/", label: "Všechna alba" }} />
+  <section class="wrap page-body">
+    <PhotoGrid fotky={fotky} title={title} />
+  </section>
+</Base>

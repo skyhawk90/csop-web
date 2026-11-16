@@ -1,0 +1,19 @@
+name: Noční přestavba webu
+
+# Cloudflare Pages staví web sám při každém pushi. Tahle akce jen jednou denně
+# zavolá deploy hook, aby se proběhlé akce přesunuly do archivu.
+on:
+  schedule:
+    - cron: "15 1 * * *"
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Spustit build na Cloudflare Pages
+        env:
+          HOOK: ${{ secrets.CF_PAGES_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then echo "Chybí secret CF_PAGES_DEPLOY_HOOK"; exit 1; fi
+          curl -fsS -X POST "$HOOK"

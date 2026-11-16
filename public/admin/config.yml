@@ -1,0 +1,112 @@
+# Sveltia CMS – https://github.com/sveltia/sveltia-cms
+# Pole musí odpovídat schématu v src/content.config.ts
+
+backend:
+  name: github
+  repo: skyhawk90/csop-web
+  branch: main
+  # Přihlášení přes GitHub řeší malý Cloudflare Worker (viz README, krok „Přihlášení do administrace“)
+  base_url: https://sveltia-cms-auth.DOPLNIT.workers.dev # TODO
+  commit_messages:
+    create: "Nový obsah: {{collection}} „{{slug}}“"
+    update: "Úprava: {{collection}} „{{slug}}“"
+    delete: "Smazáno: {{collection}} „{{slug}}“"
+    uploadMedia: "Nahrán soubor {{path}}"
+    deleteMedia: "Smazán soubor {{path}}"
+
+site_url: https://csopnasavrky.cz
+display_url: https://csopnasavrky.cz
+logo_url: /logo-ruka.png
+
+media_folder: src/assets/uploads
+public_folder: ../../assets/uploads
+
+# Fotky se při nahrání zmenší a převedou na WebP → repo zůstane malé
+media_libraries:
+  default:
+    config:
+      max_file_size: 30000000
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          width: 2400
+          height: 2400
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  - name: akce
+    label: Akce
+    label_singular: Akce
+    description: Kalendář akcí. Proběhlé akce se samy přesunou do archivu.
+    folder: src/content/akce
+    media_folder: /src/assets/uploads/akce
+    public_folder: ../../assets/uploads/akce
+    create: true
+    slug: "{{datum}}-{{slug}}"
+    summary: "{{datum}} · {{title}}"
+    sortable_fields: { fields: [datum, title], default: { field: datum, direction: descending } }
+    editor: { preview: false }
+    fields:
+      - { name: title, label: Název akce, widget: string }
+      - { name: datum, label: Datum, widget: datetime, time_format: false, format: YYYY-MM-DD, date_format: DD.MM.YYYY }
+      - { name: datum_do, label: "Datum do (jen u vícedenních akcí)", widget: datetime, time_format: false, format: YYYY-MM-DD, date_format: DD.MM.YYYY, required: false }
+      - { name: cas, label: "Začátek (např. 9:00)", widget: string, required: false }
+      - { name: misto, label: Místo / sraz, widget: string, required: false, hint: "Text se použije i pro odkaz na Mapy.cz." }
+      - { name: perex, label: Krátký popis, widget: text, hint: "1–2 věty, zobrazí se v seznamu akcí." }
+      - { name: obrazek, label: Obrázek, widget: image, required: false }
+      - { name: odkaz, label: "Odkaz (např. událost na Facebooku)", widget: string, required: false, pattern: ['^https?://', 'Musí začínat https://'] }
+      - { name: koncept, label: "Koncept (nezveřejňovat)", widget: boolean, default: false, required: false }
+      - { name: body, label: Podrobnosti, widget: markdown, required: false }
+
+  - name: aktuality
+    label: Aktuality
+    label_singular: Aktualita
+    description: Novinky a ohlédnutí za akcemi.
+    folder: src/content/aktuality
+    media_folder: /src/assets/uploads/aktuality
+    public_folder: ../../assets/uploads/aktuality
+    create: true
+    slug: "{{datum}}-{{slug}}"
+    summary: "{{datum}} · {{title}}"
+    sortable_fields: { fields: [datum, title], default: { field: datum, direction: descending } }
+    editor: { preview: false }
+    fields:
+      - { name: title, label: Nadpis, widget: string }
+      - { name: datum, label: Datum, widget: datetime, time_format: false, format: YYYY-MM-DD, date_format: DD.MM.YYYY, default: "{{now}}" }
+      - { name: perex, label: Úvodní odstavec, widget: text, hint: "1–2 věty, zobrazí se v náhledu." }
+      - { name: obrazek, label: Hlavní obrázek, widget: image, required: false }
+      - { name: obrazek_popis, label: Popis obrázku, widget: string, required: false, hint: "Co je na fotce (pro nevidomé a jako popisek)." }
+      - name: galerie
+        label: Připojit album z galerie
+        widget: relation
+        collection: galerie
+        value_field: "{{slug}}"
+        search_fields: [title]
+        display_fields: ["{{title}} ({{datum}})"]
+        required: false
+      - { name: koncept, label: "Koncept (nezveřejňovat)", widget: boolean, default: false, required: false }
+      - { name: body, label: Text, widget: markdown }
+
+  - name: galerie
+    label: Galerie
+    label_singular: Album
+    description: Fotoalba. Fotky stačí přetáhnout najednou, zmenší se automaticky.
+    folder: src/content/galerie
+    media_folder: /src/assets/uploads/galerie
+    public_folder: ../../assets/uploads/galerie
+    create: true
+    slug: "{{datum}}-{{slug}}"
+    summary: "{{datum}} · {{title}}"
+    sortable_fields: { fields: [datum, title], default: { field: datum, direction: descending } }
+    editor: { preview: false }
+    fields:
+      - { name: title, label: Název alba, widget: string }
+      - { name: datum, label: Datum, widget: datetime, time_format: false, format: YYYY-MM-DD, date_format: DD.MM.YYYY, default: "{{now}}" }
+      - { name: popis, label: Popis, widget: text, required: false }
+      - { name: fotky, label: Fotky, widget: image, multiple: true, hint: "První fotka je titulní." }
+      - { name: koncept, label: "Koncept (nezveřejňovat)", widget: boolean, default: false, required: false }
