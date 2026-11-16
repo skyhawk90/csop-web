@@ -1,7 +1,0 @@
-{
-  "$schema": "node_modules/wrangler/config-schema.json",
-  // Cloudflare Pages: statický build z ./dist (Pages ho sestavuje sám z GitHubu)
-  "name": "csop-web",
-  "pages_build_output_dir": "./dist",
-  "compatibility_date": "2026-11-01"
-}
