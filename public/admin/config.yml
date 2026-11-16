@@ -6,7 +6,7 @@ backend:
   repo: skyhawk90/csop-web
   branch: main
   # Přihlášení přes GitHub řeší malý Cloudflare Worker (viz README, krok „Přihlášení do administrace“)
-  base_url: https://sveltia-cms-auth.DOPLNIT.workers.dev # TODO
+  base_url: https://sveltia-cms-auth.musil-matej.workers.dev # sdílená služba (i pro web gymnastika)
   commit_messages:
     create: "Nový obsah: {{collection}} „{{slug}}“"
     update: "Úprava: {{collection}} „{{slug}}“"
